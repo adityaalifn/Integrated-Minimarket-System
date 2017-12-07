@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="b5bd1180-9454-4a99-a65e-b1f00d914113">
+	<property name="ireport.zoom" value="1.6105100000000008"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[SELECT MONTHNAME(tanggal) as bulan, YEAR(tanggal) as tahun, total_tagihan, total_penjualan, total_pengadaan, (total_penjualan-total_tagihan-total_pengadaan) AS laba FROM pengeluaran
+WHERE MONTH(tanggal) = MONTH(CURRENT_DATE())-1
+AND YEAR(tanggal) = YEAR(CURRENT_DATE())
+GROUP BY tanggal
+ORDER BY tanggal ASC]]>
+	</queryString>
+	<field name="bulan" class="java.lang.String"/>
+	<field name="tahun" class="java.lang.Integer"/>
+	<field name="total_tagihan" class="java.lang.Long">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="total_penjualan" class="java.lang.Long">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="total_pengadaan" class="java.lang.Long">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="laba" class="java.lang.Long"/>
+	<background>
+		<band/>
+	</background>
+	<title>
+		<band height="72">
+			<frame>
+				<reportElement mode="Opaque" x="-20" y="-20" width="595" height="92" backcolor="#006699" uuid="e4afc41e-d584-4d85-9d8c-c19e0ef408ac"/>
+				<staticText>
+					<reportElement x="20" y="20" width="234" height="43" forecolor="#FFFFFF" uuid="4a29a7f4-90f0-444a-b511-882d4263405b"/>
+					<textElement>
+						<font size="34" isBold="true"/>
+					</textElement>
+					<text><![CDATA[CitraSmart]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="436" y="43" width="59" height="20" uuid="978a6d20-49de-4481-a18c-dd3249a0985a"/>
+					<textElement textAlignment="Right"/>
+					<textFieldExpression><![CDATA[$F{bulan}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="500" y="43" width="50" height="20" uuid="e61583cc-a2c1-4002-bb09-40cf429b4875"/>
+					<textFieldExpression><![CDATA[$F{tahun}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="120" y="63" width="134" height="20" forecolor="#FFFFFF" uuid="9877246a-6150-412e-a6bd-3befe0c2f097"/>
+					<textElement>
+						<font size="14"/>
+					</textElement>
+					<text><![CDATA[Laporan Keuangan]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</title>
+	<pageHeader>
+		<band/>
+	</pageHeader>
+	<columnHeader>
+		<band/>
+	</columnHeader>
+	<detail>
+		<band height="215">
+			<textField isStretchWithOverflow="true">
+				<reportElement x="354" y="53" width="201" height="20" uuid="ff7caa75-3902-408a-ad06-f00d666d895d"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{total_tagihan}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="false">
+				<reportElement x="354" y="13" width="201" height="20" uuid="f5dbc451-48a1-4824-9f08-9f1cfb18c75e"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{total_penjualan}.toString()]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="354" y="33" width="201" height="20" uuid="7211acca-cb08-4edc-b05d-97a034d58848"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{total_pengadaan}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="354" y="93" width="201" height="20" uuid="8e7d969a-dd32-4d5c-b77a-483fc7a4c2e8"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{laba}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="53" width="268" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="095d53ab-8e71-40f3-9b76-2a693d0f0a67"/>
+				<textElement textAlignment="Left">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total Tagihan]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="13" width="268" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="76d0e451-b306-4eb4-b96b-087ad9feb3e0"/>
+				<textElement textAlignment="Left">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total Penjualan]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="33" width="268" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="16075e26-1d0d-4ab4-94e9-8f58b186e1d2"/>
+				<textElement textAlignment="Left">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total Pengadaan]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="93" width="268" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="626fd83e-9b5c-43cb-9536-fbc8b0b746e4"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Laba]]></text>
+			</staticText>
+			<line>
+				<reportElement x="341" y="92" width="199" height="1" uuid="b835c131-3959-4540-9ba2-9a5612f6ba8f"/>
+			</line>
+			<line>
+				<reportElement x="548" y="93" width="7" height="1" uuid="ca9cd447-0bf6-4239-9937-8de6bcd25c17"/>
+			</line>
+		</band>
+	</detail>
+	<columnFooter>
+		<band/>
+	</columnFooter>
+	<pageFooter>
+		<band height="17">
+			<textField>
+				<reportElement mode="Opaque" x="0" y="4" width="515" height="13" backcolor="#E6E6E6" uuid="cff8a2f3-21f0-4dcc-81bf-bc33a0cd089b"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement mode="Opaque" x="515" y="4" width="40" height="13" backcolor="#E6E6E6" uuid="71de3f7d-3968-4dd0-8886-43614ac0ddd5"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="0" y="4" width="100" height="13" uuid="23235669-7c7b-4f77-8ff8-3727dcb2606a"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band/>
+	</summary>
+</jasperReport>
